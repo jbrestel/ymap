@@ -167,7 +167,7 @@ for chr in range(0, chrName_maxcount):
 #============================================================================================================
 
 
-print "### ", time.clock() - t0, "seconds to complete processing of pileup file and fragment definitions."
+print "### ", time.clock() - t0, "seconds to complete processing of pileup file and fragment definitions.";
 
 with open(logName, "a") as myfile:
 	myfile.write("\n\t\t\t| Time to process = " + str(time.clock()-t0) + "\n")
