@@ -162,7 +162,7 @@ else
 		echo "\tPicard : Adding headers to Bowtie-BAM file." >> $logName;
 		echo "Standardizing BAM read group headers." >> $condensedLog;
 		echo "\nRunning picard:AddOrReplaceReadGroups.\n";
-		java -Xmx2g -jar $main_dir$picardDirectory AddOrReplaceReadGroups INPUT=$projectDirectory"data.temp.bam" OUTPUT=$projectDirectory"data.bam" RGID=1 RGLB=1 RGPL=ILLUMINA RGPU=1 RGSM=SM;
+		java -Xmx2g -jar $picardDirectory"AddOrReplaceReadGroups.jar" INPUT=$projectDirectory"data.temp.bam" OUTPUT=$projectDirectory"data.bam" RGID=1 RGLB=1 RGPL=ILLUMINA RGPU=1 RGSM=SM;
 		rm $projectDirectory"data.temp.bam";
 		echo "\tPicard : Headers added to Bowtie-BAM file." >> $logName;
 
@@ -263,13 +263,13 @@ else
 		echo "\tGATK : preparing for IndelRealignment." >> $logName;
 		echo "Preparing for indel realignment." >> $condensedLog;
 		echo "\nRunning gatk:RealignerTargetCreator.\n";
-		$java7Directory"java" -jar $gatkDirectory"GenomeAnalysisTK.jar" -T RealignerTargetCreator -I $GATKinputFile -R $GATKreference -o $GATKoutputFile1 $GATKoptions > $GATKlog1;
+		$java7Directory"java" -jar GenomeAnalysisTK.jar -T RealignerTargetCreator -I $GATKinputFile -R $GATKreference -o $GATKoutputFile1 $GATKoptions > $GATKlog1;
 		sed 's/^/\t\t|/;' $GATKlog1 >> $logName;
 		echo "\tGATK : prepared for IndelRealignment." >> $logName;
 		echo "\tGATK : performing IndelRealignment." >> $logName;
 		echo "Realigning indels." >> $condensedLog;
 		echo "\nRunning gatk:IndelRealigner.\n";
-		$java7Directory"java" -jar $gatkDirectory"GenomeAnalysisTK.jar" -T IndelRealigner -I $GATKinputFile -R $GATKreference -targetIntervals $GATKoutputFile1 -o $GATKoutputFile2 $GATKoptions > $GATKlog2;
+		$java7Directory"java" -jar GenomeAnalysisTK.jar -T IndelRealigner -I $GATKinputFile -R $GATKreference -targetIntervals $GATKoutputFile1 -o $GATKoutputFile2 $GATKoptions > $GATKlog2;
 		sed 's/^/\t\t|/;' $GATKlog2 >> $logName;
 		echo "\tGATK : performed IndelRealignment." >> $logName;
 		rm $GATKlog1;

@@ -84,7 +84,7 @@ else
 	echo "\tR="$reflocation$FASTA >> $logName;
 	echo "\tO="$reflocation$FASTAname".dict" >> $logName;
 
-	java -jar $main_dir$picardDirectory CreateSequenceDictionary R=$reflocation$FASTA O=$reflocation$FASTAname".dict";
+	java -jar $picardDirectory"CreateSequenceDictionary.jar" R=$reflocation$FASTA O=$reflocation$FASTAname".dict";
 fi
 
 echo "\n\t============================================================================================== 4" >> $logName;
